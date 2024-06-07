@@ -1,0 +1,615 @@
+1.Prime Number Function 
+
+def is_prime(n):
+    prime=True
+    for i in range(2,n):
+        if n%i == 0:
+            prime=False
+    if prime and n != 1:
+        return 'Number is Prime'
+    else:
+        return 'Number is Not a Prime'
+    
+
+n=int(input())
+print(is_prime(n))
+-----------------------------------------------------------------------------------------
+
+2.String Reverse 
+
+def reverse_string(string):
+    return string[::-1]
+    
+    
+string = input()
+print(reverse_string(string))
+---------------------------------------------------------------------------------------- 
+
+3.Sum Of Squares 
+
+def sum_of_squares(list_a):
+    s_square=0 
+    for i in list_a:
+        s_square += i**2 
+    return s_square
+    
+list_a = list(map(int,input().split()))
+print(sum_of_squares(list_a)) 
+--------------------------------------------------------------------------------------- 
+
+4.frequency count of each character 
+
+def frequency_count(string):
+    unq_char=''
+    f_dict={}
+    for i in string.replace(" ",""):
+        if i not in unq_char:
+            unq_char+=i  
+    for j in unq_char:
+        count=string.count(j)
+        f_dict[j]=count 
+        
+    return f_dict
+    
+string=input()
+print(frequency_count(string)) 
+---------------------------------------------------------------------------------------
+
+5.django 
+  
+1.viws.py file
+from django.http import HttpResponse
+
+def hello_world(request):
+    return HttpResponse("Hello, World!")
+
+2.urls.py 
+from django.urls import path
+from .views import hello_world
+
+urlpatterns = [
+    path('hello/', hello_world, name='hello_world'),
+]
+
+3.settings.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('myapp/', include('myapp.urls')),
+]
+----------------------------------------------------------------------------------------
+
+6.flask file
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def welcome():
+    return "Welcome to Flask!"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+----------------------------------------------------------------------------------------
+7.web file 
+
+1.web.html file
+<!DOCTYPE html>
+<html>
+  <head>
+      <link href='style.css'>
+  </head>
+  <body>
+    <div class='main-container'>
+        <h1 class='main-heading'>Wellcome To My Website</h1>
+    </div>
+  </body>
+</html>
+
+2.style.css file 
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: pink;
+    height: 100vh;
+    padding: 10px;
+    margin: 10px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: gold;
+}
+
+.main-heading{
+    color: blue;
+    font-family: 'Roboto';
+}
+-------------------------------------------------------------------------
+
+8.js Alert Function
+
+function showAlert(){
+    alert('Hello,this is a JavaScript alert!')
+}
+
+showAlert();
+------------------------------------------------------------------------
+
+9.Student table with Sql
+
+CREATE TABLE students (
+  id INT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  grade CHAR(2) NOT NULL
+);
+-----------------------------------------------------------------------
+
+10.Insert row using python 
+
+import sqlite3
+
+def insert_student(name: str, grade: float):
+    conn = sqlite3.connect('students.db')
+    cursor = conn.cursor()
+    
+    cursor.execute('''
+    INSERT INTO students (name, grade) VALUES (?, ?)
+    ''', (name, grade))
+    
+    conn.commit()
+    conn.close()
+------------------------------------------------------------------------
+
+11.API using Flask
+
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.route('/greet/<name>', methods=['GET'])
+def greet(name):
+    return jsonify({"message": f"Hello, {name}!"})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+------------------------------------------------------------------------
+
+12.merge sorting 
+
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    mid = len(arr) // 2
+    left_half = merge_sort(arr[:mid])
+    right_half = merge_sort(arr[mid:])
+
+    return merge(left_half, right_half)
+
+def merge(left, right):
+    sorted_list = []
+    left_index = 0
+    right_index = 0
+
+    while left_index < len(left) and right_index < len(right):
+        if left[left_index] < right[right_index]:
+            sorted_list.append(left[left_index])
+            left_index += 1
+        else:
+            sorted_list.append(right[right_index])
+            right_index += 1
+
+    sorted_list.extend(left[left_index:])
+    sorted_list.extend(right[right_index:])
+
+    return sorted_list
+
+arr = [38, 27, 43, 3, 9, 82, 10]
+sorted_arr = merge_sort(arr)
+print(sorted_arr)
+------------------------------------------------------------------------------
+
+13.Duplicate values 
+
+def find_duplicates(list_a):
+    unq_values=[]
+    dup_valus=[]
+    for i in list_a:
+        if i not in unq_values:
+            unq_values.append(i) 
+    for j in unq_values:
+        count = list_a.count(j)
+        if count > 1:
+            dup_valus.append(j) 
+    return dup_valus
+    
+list_a=list(map(int,input().split()))
+print(find_duplicates(list_a))
+-----------------------------------------------------------------------------
+
+14.palindrome
+
+def is_palindrome(string):
+    s=string.replace(" ","").lower()
+    reversing = s[::-1]
+    if s == reversing:
+        return string +' is a palindrome'
+    else:
+        return string +' is not a palindrome'
+    
+string=input()
+print(is_palindrome(string))
+------------------------------------------------------------------------------
+
+15.quick sort
+
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    pivot = arr[len(arr) // 2]
+
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+
+    return quick_sort(left) + middle + quick_sort(right)
+
+
+arr = list(map(int,input().split()))
+sorted_arr = quick_sort(arr)
+print(sorted_arr)
+------------------------------------------------------------------------------
+
+16.BTS tree 
+
+class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.val = key
+
+class BST:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, key):
+        if self.root is None:
+            self.root = Node(key)
+        else:
+            self._insert(self.root, key)
+
+    def _insert(self, root, key):
+        if key < root.val:
+            if root.left is None:
+                root.left = Node(key)
+            else:
+                self._insert(root.left, key)
+        else:
+            if root.right is None:
+                root.right = Node(key)
+            else:
+                self._insert(root.right, key)
+
+    def find(self, key):
+        return self._find(self.root, key)
+
+    def _find(self, root, key):
+        if root is None or root.val == key:
+            return root
+        if key < root.val:
+            return self._find(root.left, key)
+        return self._find(root.right, key)
+
+    def delete(self, key):
+        self.root = self._delete(self.root, key)
+
+    def _delete(self, root, key):
+        if root is None:
+            return root
+
+        if key < root.val:
+            root.left = self._delete(root.left, key)
+        elif key > root.val:
+            root.right = self._delete(root.right, key)
+        else:
+            if root.left is None:
+                return root.right
+            elif root.right is None:
+                return root.left
+
+            min_larger_node = self._find_min(root.right)
+            root.val = min_larger_node.val
+            root.right = self._delete(root.right, min_larger_node.val)
+
+        return root
+
+    def _find_min(self, root):
+        current = root
+        while current.left is not None:
+            current = current.left
+        return current
+
+    def height(self):
+        return self._height(self.root)
+
+    def _height(self, root):
+        if root is None:
+            return 0
+        left_height = self._height(root.left)
+        right_height = self._height(root.right)
+        return max(left_height, right_height) + 1
+
+bst = BST()
+bst.insert(50)
+bst.insert(30)
+bst.insert(20)
+bst.insert(40)
+bst.insert(70)
+bst.insert(60)
+bst.insert(80)
+
+print(bst.find(40))  
+print(bst.find(100))
+
+bst.delete(20)
+bst.delete(30)
+bst.delete(50)
+
+print(bst.height()) 
+------------------------------------------------------------------
+
+17.Graph algorithem
+
+import heapq
+
+def dijkstra(graph,start):
+    # Initialize the priority queue (min-heap)
+    priority_queue = [(0, start)]
+    # Initialize distances dictionary with infinity for all nodes except the start node
+    distances = {node: float('inf') for node in graph}
+    distances[start] = 0
+    # Initialize a set to track visited nodes
+    visited = set()
+
+    while priority_queue:
+        # Extract the node with the smallest distance
+        current_distance, current_node = heapq.heappop(priority_queue)
+
+        # Skip processing if we've already visited this node
+        if current_node in visited:
+            continue
+
+        # Mark the node as visited
+        visited.add(current_node)
+
+        # Update distances to neighboring nodes
+        for neighbor, weight in graph[current_node].items():
+            distance = current_distance + weight
+
+            # Only consider this new path if it's better
+            if distance < distances[neighbor]:
+                distances[neighbor] = distance
+                heapq.heappush(priority_queue, (distance, neighbor))
+
+    return distances
+
+# Example usage:
+graph = {
+    'A': {'B': 1, 'C': 4},
+    'B': {'A': 1, 'C': 2, 'D': 5},
+    'C': {'A': 4, 'B': 2, 'D': 1},
+    'D': {'B': 5, 'C': 1}
+}
+
+start_node = 'A'
+distances = dijkstra(graph, start_node)
+print(distances)
+-------------------------------------------------------------------------------
+
+18.Book object
+
+class Book:
+    def __init__(self, title: str, author: str, pages: int):
+        self.title = title 
+        self.author = author
+        self.pages = pages 
+        
+    def __str__(self):
+        return self.title
+        
+ca = Book('Navya','jonson',123)
+------------------------------------------------------------------------------
+
+19.Peremeter
+
+class Rectangle:
+    def __init__(self, length: float, width: float):
+        self.length = length 
+        self.width = width 
+        
+    def perimeter(self):
+        val = self.length * self.width 
+        return 2*val
+
+        
+m=Rectangle(11.,34.2)
+print(m.perimeter())
+-------------------------------------------------------------------------------
+
+20.Bank Account
+
+class Bankaccount:
+    def __init__(self, account_number: str, account_holder: str, balance: float = 0.0):
+        self.account_number=account_number
+        self.account_holder=account_holder
+        self.balance=balance 
+        
+    def deposit(self,amount):
+        self.amount = amount 
+        self.balance += self.amount 
+        
+    def withdraw(self,amount):
+        self.amount=amount
+        self.balance -= self.amount 
+        
+    def get_balance(self):
+        return self.balance
+
+m=Bankaccount('87971134655','narasimha',1000)
+m.deposit(100)
+m.withdraw(50)
+print(m.get_balance())
+----------------------------------------------------------------------------------------
+
+21.inheritence and polymorfisam
+
+import math
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, radius: float):
+        self.radius = radius
+
+    def area(self):
+        return math.pi * self.radius ** 2
+
+    def perimeter(self):
+        return 2 * math.pi * self.radius
+
+class Rectangle(Shape):
+    def __init__(self, width: float, height: float):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+circle = Circle(5)
+print(f"Circle Area: {circle.area()}")
+print(f"Circle Perimeter: {circle.perimeter()}")
+
+rectangle = Rectangle(4, 6)
+print(f"Rectangle Area: {rectangle.area()}")
+print(f"Rectangle Perimeter: {rectangle.perimeter()}")
+-----------------------------------------------------------------------
+
+22.Class method and static method
+
+class Employee:
+    num_employees = 0
+
+    def __init__(self, employee_id: str):
+        self.employee_id = employee_id
+        Employee.num_employees += 1
+
+    @classmethod
+    def get_num_employees(cls):
+        """Class method to get the current number of employees."""
+        return cls.num_employees
+
+    @staticmethod
+    def is_valid_employee_id(employee_id: str) -> bool:
+        """Static method to validate employee ID format."""
+        return employee_id.isdigit() and len(employee_id) > 0
+
+    @classmethod
+    def increment_num_employees(cls):
+        """Class method to increment the number of employees."""
+        cls.num_employees += 1
+
+
+emp1 = Employee("123")
+emp2 = Employee("456")
+emp3 = Employee("789a")  # This will raise a ValueError
+
+
+print(f"Number of employees: {Employee.get_num_employees()}")
+--------------------------------------------------------------------------
+
+23.file Reading and Returning
+
+def read_file(file_path: str):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+    for line in lines:
+        return line
+
+lines = read_file('example.txt')
+print(lines)
+---------------------------------------------------------------------------
+
+24.file read
+
+def write_file(file_path):
+    with open(file_path, 'w') as file:
+        for line in lines:
+            return file.write(line + '\n')
+
+lines_to_write = ['Hello, world!', 'This is a sample text file.', 'It contains multiple lines.']
+print(write_file('example_output.txt', lines_to_write))
+---------------------------------------------------------------------------------------------------
+
+25.csv 
+
+import csv
+from typing import List, Dict
+
+def read_csv(file_path: str) -> List[Dict[str, str]]:
+    with open(file_path, mode='r', newline='', encoding='utf-8') as file:
+        reader = csv.DictReader(file)
+        rows = [row for row in reader]
+    return rows
+
+
+rows = read_csv('example.csv')
+print(rows)
+----------------------------------------------------------------------------------------------------
+
+26.json
+
+import json
+
+def process_json(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        data = json.load(file)
+
+    processed_data = {}
+
+    for item in data:
+        if 'id' in item and 'name' in item and 'value' in item:
+            processed_data[item['id']] = {
+                'name': item['name'],
+                'value': item['value']
+            }
+
+    return processed_data
+
+processed_data = process_json('example.json')
+print(processed_data)
+
+
+
+
+
+
+
+
+
+
+
